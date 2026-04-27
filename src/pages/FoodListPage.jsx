@@ -21,7 +21,7 @@ function FoodListPage() {
     <section className="mx-auto max-w-6xl px-4 py-14">
       <div className="mb-10 max-w-2xl">
         <p className="mb-2 font-semibold text-emerald-700">
-          Database Makanan
+          Daftar Makanan
         </p>
 
         <h1 className="text-3xl font-bold text-slate-900 md:text-4xl">
@@ -42,14 +42,14 @@ function FoodListPage() {
             placeholder="Cari makanan..."
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            className="w-full rounded-2xl border border-slate-300 px-12 py-3 outline-none focus:border-emerald-600"
+            className="w-225 rounded-4xl border border-slate-300 px-12 py-3 outline-none focus:border-emerald-600"
           />
         </div>
 
         <select
           value={category}
           onChange={(event) => setCategory(event.target.value)}
-          className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-emerald-600"
+          className="w-50 rounded-xl border border-slate-300 px-4 py-1 text-sm justify-self-end outline-none focus:border-emerald-600"
         >
           {categories.map((item) => (
             <option key={item} value={item}>

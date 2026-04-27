@@ -7,7 +7,6 @@ function Navbar() {
 
   const navItems = [
     { label: 'Beranda', path: '/' },
-    { label: 'Kalkulator', path: '/kalkulator' },
     { label: 'Daftar Makanan', path: '/daftar-makanan' },
     { label: 'Tips Sehat', path: '/tips-sehat' },
     { label: 'Tentang', path: '/tentang' },
