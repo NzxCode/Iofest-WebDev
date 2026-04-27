@@ -6,12 +6,8 @@ function HomePage() {
     <section className="mx-auto max-w-6xl px-4 py-16">
       <div className="grid items-center gap-10 md:grid-cols-2">
         <div>
-          <p className="mb-3 inline-block rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-700">
-            Website Perhitungan Kalori
-          </p>
-
           <h1 className="mb-5 text-4xl font-bold leading-tight text-slate-900 md:text-5xl">
-            Hitung kalori makanan berdasarkan porsi dengan lebih mudah.
+            <span class="bg-emerald-300 rounded">Hitung kalori</span> makanan berdasarkan porsi dengan <span class="bg-emerald-300 rounded">lebih mudah.</span>
           </h1>
 
           <p className="mb-8 text-lg leading-relaxed text-slate-600">
@@ -23,7 +19,9 @@ function HomePage() {
           <div className="flex flex-wrap gap-4">
             <Link
               to="/kalkulator"
-              className="rounded-full bg-emerald-600 px-6 py-3 font-semibold text-white hover:bg-emerald-700"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-full 
+               transition-all duration-300 ease-in-out transform hover:scale-105 
+               hover:shadow-lg active:scale-95"
             >
               Coba Kalkulator
             </Link>
