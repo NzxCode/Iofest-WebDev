@@ -11,7 +11,7 @@ function FoodListPage() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDebouncedSearch(search)
-    }, 5000)
+    }, 400)
     return () => clearTimeout(timeout)
   }, [search])
 
