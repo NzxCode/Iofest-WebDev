@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Apple, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+import logo from '../assets/logo.png'
 
 function Navbar() {
   const [open, setOpen] = useState(false)
@@ -20,12 +21,16 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link to="/" className="flex items-center gap-2 font-bold text-emerald-700">
-          <div className="rounded-xl bg-emerald-100 p-2">
-            <Apple size={22} />
+        <Link to="/" className="flex items-center gap-3 font-bold text-emerald-700">
+          <div className="h-10 w-10 overflow-hidden rounded-xl bg-emerald-50 p-1 shadow-sm">
+            <img
+              src={logo}
+              alt="Logo Kalories"
+              className="h-full w-full object-contain"
+            />
           </div>
-          <span className="text-lg">Kalories</span>
-        </Link>
+        <span className="text-lg">Kalories</span>
+      </Link>
 
         <nav className="hidden items-center gap-6 text-sm md:flex">
           {navItems.map((item) => (
