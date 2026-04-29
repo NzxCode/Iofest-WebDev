@@ -52,14 +52,14 @@ function FoodListPage() {
             placeholder="Cari makanan..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-2xl border px-12 py-3"
+            className="w-225 rounded-2xl border px-12 py-3"
           />
         </div>
 
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="w-40 rounded-xl border px-4 py-2 justify-self-end"
+          className="w-50 rounded-xl border px-4 py-2 justify-self-end"
         >
           {categories.map((item) => (
             <option key={item} value={item}>{item}</option>

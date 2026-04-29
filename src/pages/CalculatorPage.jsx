@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Search } from 'lucide-react'
 import { Trash2 } from 'lucide-react'
 import { calculateCalories, getCalorieCategory, getTodayKey } from '../utils/calorie'
 import ResultCard from '../components/ResultCard'
