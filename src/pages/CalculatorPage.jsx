@@ -1,14 +1,16 @@
 import { useEffect, useMemo, useState } from 'react'
+import { Search } from 'lucide-react'
 import { Trash2 } from 'lucide-react'
-import { foods } from '../data/foods'
 import { calculateCalories, getCalorieCategory, getTodayKey } from '../utils/calorie'
 import ResultCard from '../components/ResultCard'
 
 const STORAGE_KEY = 'kalories_meals'
 
 function CalculatorPage() {
-  const [foodId, setFoodId] = useState(foods[0].id)
-  const [gram, setGram] = useState(foods[0].defaultPortionGram)
+  const [foods, setFoods] = useState([]) 
+  const [foodId, setFoodId] = useState(null)
+  const [gram, setGram] = useState(0)
+
   const [meals, setMeals] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY)
@@ -19,12 +21,25 @@ function CalculatorPage() {
   })
 
   useEffect(() => {
+    fetch('/api/foods')
+      .then((res) => res.json())
+      .then((data) => {
+        setFoods(data)
+        if (data.length > 0) {
+          setFoodId(data[0]._id)
+          setGram(data[0].defaultPortionGram)
+        }
+      })
+      .catch(console.error)
+  }, [])
+
+  useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(meals))
   }, [meals])
 
   const selectedFood = useMemo(() => {
-    return foods.find((food) => food.id === Number(foodId))
-  }, [foodId])
+    return foods.find((food) => food._id === foodId)
+  }, [foodId, foods])
 
   const calories = calculateCalories(selectedFood?.caloriesPer100g, gram)
   const category = getCalorieCategory(calories)
@@ -34,8 +49,8 @@ function CalculatorPage() {
   const totalToday = todayMeals.reduce((total, meal) => total + meal.calories, 0)
 
   function handleFoodChange(event) {
-    const id = Number(event.target.value)
-    const food = foods.find((item) => item.id === id)
+    const id = event.target.value
+    const food = foods.find((item) => item._id === id)
 
     setFoodId(id)
     setGram(food.defaultPortionGram)
@@ -71,6 +86,10 @@ function CalculatorPage() {
     setMeals(meals.filter((meal) => meal.date !== todayKey))
   }
 
+  if (!selectedFood) {
+    return <div className="p-10 text-center">Loading...</div>
+  }
+
   return (
     <section className="mx-auto max-w-6xl px-4 py-14">
       <div className="mb-10 max-w-2xl">
@@ -102,7 +121,7 @@ function CalculatorPage() {
                 className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-emerald-600"
               >
                 {foods.map((food) => (
-                  <option key={food.id} value={food.id}>
+                  <option key={food._id} value={food._id}>
                     {food.name} - {food.category}
                   </option>
                 ))}
@@ -165,7 +184,7 @@ function CalculatorPage() {
               ) : (
                 todayMeals.map((meal) => (
                   <div
-                    key={meal.id}
+                    key={meal._id}
                     className="flex items-center justify-between gap-4 rounded-2xl border border-slate-200 p-4"
                   >
                     <div>
@@ -178,7 +197,7 @@ function CalculatorPage() {
                     <div className="flex items-center gap-3">
                       <p className="font-bold text-emerald-700">{meal.calories} kcal</p>
                       <button
-                        onClick={() => removeMeal(meal.id)}
+                        onClick={() => removeMeal(meal._id)}
                         className="rounded-xl p-2 text-slate-400 hover:bg-red-50 hover:text-red-600"
                         aria-label="Hapus makanan"
                       >
