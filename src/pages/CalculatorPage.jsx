@@ -47,6 +47,21 @@ function CalculatorPage() {
   const todayMeals = meals.filter((meal) => meal.date === todayKey)
   const totalToday = todayMeals.reduce((total, meal) => total + meal.calories, 0)
 
+  // Check jika jumlah kalori Terlalu banyak atau tidak
+  let status = "";
+  let style = "";
+
+  if (totalToday > 3000) {
+    status = `❌ Jumalah Kalori Terlalu banyak`;
+    style = "bg-red-100 text-red-700";
+  } else if (totalToday > 2000) {
+    status = `⚠️ Jumalah Kalori Mendekati Batas`;
+    style = "bg-yellow-100 text-yellow-700";
+  } else {
+    status = `✅ Jumalah Kalori aman`;
+    style = "bg-green-100 text-green-700";
+  }
+
   function handleFoodChange(event) {
     const id = event.target.value
     const food = foods.find((item) => item._id === id)
@@ -78,7 +93,7 @@ function CalculatorPage() {
   }
 
   function removeMeal(id) {
-    setMeals(meals.filter((meal) => meal.id !== id))
+    setMeals(meals.filter((meal) => meal._id !== id))
   }
 
   function clearTodayMeals() {
@@ -158,7 +173,10 @@ function CalculatorPage() {
                   Riwayat Hari Ini
                 </p>
                 <h2 className="mt-1 text-2xl font-bold text-slate-900">
-                  {totalToday} kcal
+                  {totalToday} kcal  
+                </h2>
+                <h2 className={`inline-block px-4 py-1 rounded-full text-sm font-semibold ${style}`}>
+                  {status} 
                 </h2>
                 <p className="mt-1 text-sm text-slate-500">
                   Total kalori dari makanan yang kamu tambahkan hari ini.
