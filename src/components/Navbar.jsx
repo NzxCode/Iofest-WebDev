@@ -11,6 +11,7 @@ function Navbar() {
     { label: 'Daftar Makanan', path: '/daftar-makanan' },
     { label: 'Tips Sehat', path: '/tips-sehat' },
     { label: 'Tentang', path: '/tentang' },
+    { label: 'FAQ', path: '/FAQ' },
   ]
 
   const navClass = ({ isActive }) =>
