@@ -6,6 +6,7 @@ import CalculatorPage from './pages/CalculatorPage'
 import FoodListPage from './pages/FoodListPage'
 import TipsPage from './pages/TipsPage'
 import AboutPage from './pages/AboutPage'
+import FAQ from './pages/FAQ'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/daftar-makanan" element={<FoodListPage />} />
           <Route path="/tips-sehat" element={<TipsPage />} />
           <Route path="/tentang" element={<AboutPage />} />
+          <Route path="/FAQ" element={<FAQ />} />
         </Routes>
       </main>
 
